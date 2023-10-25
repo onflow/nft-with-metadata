@@ -22,4 +22,7 @@ export const nftWithMetdata = {
   smartContractExplanation: smartContractExplanationPath,
   transactionCode: transactionPath,
   transactionExplanation: transactionExplanationPath,
+  filters: {
+    difficulty: "beginner"
+  }
 };

@@ -1,22 +1,31 @@
-pub resource NFT: NonFungibleToken.INFT, MetadataViews.Resolver {
-    pub let id: UInt64
+access(all)
+resource NFT: NonFungibleToken.INFT, MetadataViews.Resolver {
+    access(all)
+    let id: UInt64
 
-    pub let name: String
-    pub let thumbnail: String
-    pub let description: String
-    pub let power: String
-    pub let will: String
-    pub let determination: String
+    access(all)
+    let name: String
+    access(all)
+    let thumbnail: String
+    access(all)
+    let description: String
+    access(all)
+    let power: String
+    access(all)
+    let will: String
+    access(all)
+    let determination: String
 
-
-    pub fun getViews(): [Type] {
+    access(all)
+    fun getViews(): [Type] {
         return [
             Type<MetadataViews.Display>(),
             Type<NewExampleNFT.Traits>()
         ]
     }
 
-    pub fun resolveView(_ view: Type): AnyStruct? {
+    access(all)
+    fun resolveView(_ view: Type): AnyStruct? {
         switch view {
             case Type<MetadataViews.Display>():
                 return MetadataViews.Display(
@@ -52,6 +61,6 @@ pub resource NFT: NonFungibleToken.INFT, MetadataViews.Resolver {
         self.description = description
         self.power = power
         self.will = will
-        self.determination= determination
+        self.determination = determination
     }
 }

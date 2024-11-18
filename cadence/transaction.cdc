@@ -5,22 +5,23 @@ import NewExampleNFT from 0x02
 // It must be run with the account that has the minter resource
 // stored in /storage/NFTMinter
 
-transaction{
+transaction {
 
-    // local variable for storing the minter reference
-    let minter: &NewExampleNFT.NFTMinter
+    // Local variable for storing the minter reference
+    let minter: auth(MinterEntitlement) &NewExampleNFT.NFTMinter
 
-    prepare(signer: AuthAccount) {
-        // borrow a reference to the NFTMinter resource in storage
-        self.minter = signer.borrow<&NewExampleNFT.NFTMinter>(from: NewExampleNFT.MinterStoragePath)
-            ?? panic("Could not borrow a reference to the NFT minter")
+    prepare(signer: auth(Storage, Capabilities) &Account) {
+        // Borrow a reference to the NFTMinter resource in storage
+        self.minter = signer.capabilities.storage.borrow<&NewExampleNFT.NFTMinter>(
+            from: NewExampleNFT.MinterStoragePath
+        ) ?? panic("Could not borrow a reference to the NFT minter")
     }
 
     execute {
         // Borrow the recipient's public NFT collection reference
         let receiver = getAccount(0x02)
-            .getCapability(NewExampleNFT.CollectionPublicPath)
-            .borrow<&{NonFungibleToken.CollectionPublic}>()
+            .capabilities
+            .borrow<&{NonFungibleToken.CollectionPublic}>(NewExampleNFT.CollectionPublicPath)
             ?? panic("Could not get receiver reference to the NFT Collection")
 
         // Mint the NFT and deposit it to the recipient's collection

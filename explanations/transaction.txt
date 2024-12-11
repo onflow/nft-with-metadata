@@ -1,3 +1,6 @@
-Because the above smart contract has metadata in the NFT that is initialized, when minting the NFT you will need to send in those parameters in your transaction.
 
-Here we borrow the minter from the account that holds the NFT Minter. We then take the address of the recepient and make sure they have the capability to store the NFT. Afterwards we mint the NFT with the parameters specified.
+Since the smart contract requires metadata to be initialized for each NFT, the minting transaction must include these metadata parameters. This ensures that every NFT created is properly defined with the necessary information.
+
+n the transaction, we first borrow the NFTMinter resource from the account's storage that holds it. Then, we verify that the recipient's account has the capability to store NFTs by checking their collection. If the capability is missing, the transaction will fail to prevent the NFT from being lost.
+
+Finally, we mint the NFT by calling the mintNFT function on the NFTMinter, passing in the required metadata parameters (such as name, description, thumbnail, and custom attributes). Once minted, the NFT is deposited into the recipient's collection, completing the process securely and ensuring that the NFT is properly stored in the intended account.

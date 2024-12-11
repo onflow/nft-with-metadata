@@ -1,3 +1,3 @@
-This is a NFT resource that abides by the NFT standard and the Metadata standard. It imports both interfaces into the resource.
+This contract defines an NFT resource that fully complies with both the Flow NFT standard and the Metadata standard. The NFT resource includes metadata fields such as id, name, thumbnail, description, power, will, and determination, which are all initialized during the resource's creation.
 
-From there, metadata such as id, name, thumbnail, description, power, will, and determination are defined and initialized. The functions to resolveView and getViews are also included to make viewing the metadata easy.
+To facilitate access to this metadata, the contract includes a resolveView function that retrieves specific views based on client requests and a getViews function that lists all the supported views. These functions streamline the process of retrieving and displaying metadata, ensuring that the NFT's information can be easily accessed and used by external applications.

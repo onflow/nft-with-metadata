@@ -25,5 +25,13 @@ transaction {
             },
             
         )
+
+        // Borrow the collection from the caller's storage
+        let collection = signer.storage.borrow<&ExampleNFT.Collection>(
+            from: /storage/exampleNFTCollection
+        ) ?? panic("Could not borrow the NFT collection reference.")
+
+        // Deposit the newly minted NFT into the caller's collection
+        collection.deposit(token: <-nft)
     }
 }

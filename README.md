@@ -65,7 +65,7 @@ recipe-name/
 // Pass the repo name
 const recipe = "sample-recipe-name";
 
-export const sampleRecipe= {
+export const sampleRecipe = {
   slug: recipe,
   title: "",
   featuredText: "",

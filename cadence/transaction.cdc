@@ -1,1 +1,0 @@
-./cadence/transactions/mint_nft.cdc
